@@ -1,0 +1,15 @@
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\bin\Debug\net10.0\McSilicious.exe
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\bin\Debug\net10.0\McSilicious.deps.json
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\bin\Debug\net10.0\McSilicious.runtimeconfig.json
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\bin\Debug\net10.0\McSilicious.dll
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\bin\Debug\net10.0\McSilicious.pdb
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\obj\Debug\net10.0\McSilicious.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\obj\Debug\net10.0\McSilicious.AssemblyInfoInputs.cache
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\obj\Debug\net10.0\McSilicious.AssemblyInfo.cs
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\obj\Debug\net10.0\McSilicious.csproj.CoreCompileInputs.cache
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\obj\Debug\net10.0\McSilicious.dll
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\obj\Debug\net10.0\refint\McSilicious.dll
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\obj\Debug\net10.0\McSilicious.pdb
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\obj\Debug\net10.0\McSilicious.genruntimeconfig.cache
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\obj\Debug\net10.0\ref\McSilicious.dll
+C:\Users\Benedict Dagle\OneDrive\Documents\COMPROG\CSHARP\CollegeProjects\McSilicious\obj\Debug\net10.0\McSilici.CA3390E0.Up2Date
