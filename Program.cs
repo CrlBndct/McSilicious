@@ -16,7 +16,14 @@ class Food
 
 
 
+class RestoMeth
+{
+    
 
+
+
+    
+}
 
 
 
@@ -38,11 +45,10 @@ class Program
 
         do
         {
-            Console.Clear();
-
+            Console.WriteLine($"{"ID", -5} {"Food Name", -15} Price");
             for (int i = 0; i < foodMenu.Length; i++)
             {
-                Console.WriteLine($"[{foodMenu[i].itemNum}] {foodMenu[i].foodName, -15} Php {foodMenu[i].price}");
+                Console.WriteLine($"{"["+foodMenu[i].itemNum+"]", -5} {foodMenu[i].foodName, -15} Php {foodMenu[i].price}");
             }
 
             Console.Write("Enter Food ID: ");
@@ -61,7 +67,7 @@ class Program
                     orders.Add(foodMenu[sel - 1]);
                     foreach (Food t in orders)
                     {
-                        Console.WriteLine(t.foodName);
+                        Console.WriteLine($"{t.foodName}");
                     }
                     Console.WriteLine();
                 }
@@ -98,7 +104,6 @@ class Program
 
         do
         {
-            Console.Clear();
             Console.WriteLine("[1] Cashier \n[2] Customer \n[3] Done");
 
             Console.Write("Enter Role: ");
