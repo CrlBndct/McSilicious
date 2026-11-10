@@ -29,14 +29,20 @@ class Program
     static List<Food> orders = new List<Food>();
     static void Customer()
     {
-        Food[] foodMenu = {new Food(1, "fries", 59), new Food(2, "Meal 1", 192), new Food(3, "Meal 2", 200) };
+        Food[] foodMenu = {new Food(1, "fries", 59), 
+                           new Food(2, "Meal 1", 192), 
+                           new Food(3, "Meal 2", 200), 
+                           new Food(4, "Happy Meal", 235),
+                           new Food(5, "Cheese Burger", 89)};
         bool running = true;
 
         do
         {
+            Console.Clear();
+
             for (int i = 0; i < foodMenu.Length; i++)
             {
-                Console.WriteLine($"[{foodMenu[i].itemNum}] {foodMenu[i].foodName}");
+                Console.WriteLine($"[{foodMenu[i].itemNum}] {foodMenu[i].foodName, -15} Php {foodMenu[i].price}");
             }
 
             Console.Write("Enter Food ID: ");
@@ -48,6 +54,7 @@ class Program
                 if (sel <= 0 || sel > foodMenu.Length)
                 {
                     Console.WriteLine("Invalid number");
+                    Console.WriteLine();
                 }
                 else
                 {
@@ -56,6 +63,7 @@ class Program
                     {
                         Console.WriteLine(t.foodName);
                     }
+                    Console.WriteLine();
                 }
             }
             else if (!int.TryParse(itemId, out sel))
@@ -75,10 +83,7 @@ class Program
 
 
 
-//this is a change
-//this is another change
-// another change
-//another another change
+
 
 
 
@@ -93,6 +98,7 @@ class Program
 
         do
         {
+            Console.Clear();
             Console.WriteLine("[1] Cashier \n[2] Customer \n[3] Done");
 
             Console.Write("Enter Role: ");
