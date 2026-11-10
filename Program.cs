@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 
 class Food
 {
@@ -19,15 +20,29 @@ class Food
 class RestoMeth
 {
     
+    public static void IterOrders(List<Food> ord)
+    {
+        for (int i = 0; i < ord.Count; i++)
+        {
+            int qnty = 0;
+
+            for (int k = 0; k < ord.Count; k++)
+            {
+                if (ord[i].itemNum == ord[k].itemNum)
+                {
+                    qnty += 1;
+                }
+            }
+
+            if (ord[i].itemNum != ord[i + 1].itemNum)
+            {
+                Console.WriteLine(ord[i].itemNum + "=" + qnty);
+            }
+        }
+    }
 
 
-
-    
 }
-
-
-
-
 
 
 class Program
@@ -55,6 +70,8 @@ class Program
             string itemId = Console.ReadLine();
             int sel;
 
+            Console.WriteLine();
+
             if (int.TryParse(itemId, out sel))
             {
                 if (sel <= 0 || sel > foodMenu.Length)
@@ -65,38 +82,35 @@ class Program
                 else
                 {
                     orders.Add(foodMenu[sel - 1]);
-                    foreach (Food t in orders)
-                    {
-                        Console.WriteLine($"{t.foodName}");
-                    }
+                    // RestoMeth.IterOrders(orders);
+                    // foreach (Food t in orders)
+                    // {
+                    //     Console.WriteLine($"{t.foodName}");
+                    // }
                     Console.WriteLine();
                 }
+            }else if (itemId == "c")
+            {
+                break;
+                
+            }else if (itemId == "cc")
+            {
+                orders.Clear();
+                RestoMeth.IterOrders(orders);
             }
             else if (!int.TryParse(itemId, out sel))
             {
                 Console.WriteLine("Invalid Selection");
             }
-
             // if (orders.Count != 0)
             // {
             //     Console.WriteLine("[confirm] [cancel]");
             // }
             
         }while(running);
+
+        RestoMeth.IterOrders(orders);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     static void Main(string[] args)
     {
