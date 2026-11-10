@@ -19,13 +19,11 @@ class Food
 
 class RestoMeth
 {
-    
     public static void IterOrders(List<Food> ord)
     {
         for (int i = 0; i < ord.Count; i++)
         {
             int qnty = 0;
-
             for (int k = 0; k < ord.Count; k++)
             {
                 if (ord[i].itemNum == ord[k].itemNum)
@@ -33,7 +31,6 @@ class RestoMeth
                     qnty += 1;
                 }
             }
-
             if (ord[i].itemNum != ord[i + 1].itemNum)
             {
                 Console.WriteLine(ord[i].itemNum + "=" + qnty);
@@ -65,6 +62,10 @@ class Program
             {
                 Console.WriteLine($"{"["+foodMenu[i].itemNum+"]", -5} {foodMenu[i].foodName, -15} Php {foodMenu[i].price}");
             }
+            Console.WriteLine("[c] Confirm order");
+            Console.WriteLine("[cc] Cancel order");
+
+            Console.WriteLine();
 
             Console.Write("Enter Food ID: ");
             string itemId = Console.ReadLine();
