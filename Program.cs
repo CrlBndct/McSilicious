@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
+using System.Collections.Generic;
+using System.Linq;
 
 class Food
 {
@@ -21,30 +23,25 @@ class RestoMeth
 {
     public static void IterOrders(List<Food> ord)
     {
-        for (int i = 0; i < ord.Count; i++)
+        Console.WriteLine($"{"Product", -15} {"Quantity", -10}");
+        foreach (Food foods in ord.Distinct())
         {
-            int qnty = 0;
-            for (int k = 0; k < ord.Count; k++)
-            {
-                if (ord[i].itemNum == ord[k].itemNum)
+                int qnty = 0;
+                for (int k = 0; k < ord.Count; k++)
                 {
-                    qnty += 1;
+                    if (foods.itemNum == ord[k].itemNum)
+                    {
+                        qnty += 1;
+                    }
                 }
-            }
-            if (ord[i].itemNum != ord[i + 1].itemNum)
-            {
-                Console.WriteLine(ord[i].itemNum + "=" + qnty);
-            }
+            Console.WriteLine($"{foods.itemNum, -15} {"x"+qnty, -10}");
         }
     }
-
-
 }
 
 
 class Program
 { 
-    
     static List<Food> orders = new List<Food>();
     static void Customer()
     {
@@ -75,12 +72,7 @@ class Program
 
             if (int.TryParse(itemId, out sel))
             {
-                if (sel <= 0 || sel > foodMenu.Length)
-                {
-                    Console.WriteLine("Invalid number");
-                    Console.WriteLine();
-                }
-                else
+                if (sel > 0 || sel <= foodMenu.Length)
                 {
                     orders.Add(foodMenu[sel - 1]);
                     // RestoMeth.IterOrders(orders);
@@ -88,6 +80,10 @@ class Program
                     // {
                     //     Console.WriteLine($"{t.foodName}");
                     // }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid number");
                     Console.WriteLine();
                 }
             }else if (itemId == "c")
