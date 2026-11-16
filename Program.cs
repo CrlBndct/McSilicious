@@ -34,7 +34,7 @@ class RestoMeth
                         qnty += 1;
                     }
                 }
-            Console.WriteLine($"{foods.itemNum, -15} {"x"+qnty, -10}");
+            Console.WriteLine($"{foods.foodName, -15} {"x"+qnty, -10}");
         }
     }
 }
@@ -45,22 +45,23 @@ class Program
     static List<Food> orders = new List<Food>();
     static void Customer()
     {
-        Food[] foodMenu = {new Food(1, "fries", 59), 
-                           new Food(2, "Meal 1", 192), 
-                           new Food(3, "Meal 2", 200), 
-                           new Food(4, "Happy Meal", 235),
-                           new Food(5, "Cheese Burger", 89)};
+        Food[] foodMenu = {new Food(1, "fries", 59.00f), 
+                           new Food(2, "Meal 1", 192.00f), 
+                           new Food(3, "Meal 2", 200.00f), 
+                           new Food(4, "Happy Meal", 235.00f),
+                           new Food(5, "Cheese Burger", 89.00f)};
         bool running = true;
+
+        Console.WriteLine("======= Customer =======");
 
         do
         {
             Console.WriteLine($"{"ID", -5} {"Food Name", -15} Price");
             for (int i = 0; i < foodMenu.Length; i++)
             {
-                Console.WriteLine($"{"["+foodMenu[i].itemNum+"]", -5} {foodMenu[i].foodName, -15} Php {foodMenu[i].price}");
+                Console.WriteLine($"{"["+foodMenu[i].itemNum+"]", -5} {foodMenu[i].foodName, -15} PHP {foodMenu[i].price}");
             }
-            Console.WriteLine("[c] Confirm order");
-            Console.WriteLine("[cc] Cancel order");
+            Console.WriteLine("[v] view order");
 
             Console.WriteLine();
 
@@ -112,13 +113,14 @@ class Program
     static void Main(string[] args)
     {
         bool isRunning = true;
-
+        Console.WriteLine("======= McSilicious =======");
         do
         {
             Console.WriteLine("[1] Cashier \n[2] Customer \n[3] Done");
 
             Console.Write("Enter Role: ");
             int r = int.Parse(Console.ReadLine());
+            Console.WriteLine();
 
             switch (r)
             {
@@ -126,6 +128,7 @@ class Program
                     Customer();
                     break;
             }
+
         } while (isRunning);
     }
 }
