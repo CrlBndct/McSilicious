@@ -68,7 +68,6 @@ class Program
                 Console.WriteLine($"{"["+foodMenu[i].itemNum+"]", -5} {foodMenu[i].foodName, -15} PHP {foodMenu[i].price}");
             }
             Console.WriteLine("[v] view order");
-
             Console.WriteLine();
 
             Console.Write("Enter Food ID: ");
@@ -113,7 +112,7 @@ class Program
 
                     int count = 0;
 
-                    for (int x = 0; x < orders.Count; x++)
+                    for (int x = 0; x < orders.Count;)
                     {
                         if (orders[x].itemNum == id)
                         {
@@ -123,6 +122,10 @@ class Program
                             {
                                 break;
                             }
+                        }
+                        else
+                        {
+                            x++;
                         }
                     }
                 }
