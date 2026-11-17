@@ -118,9 +118,8 @@ class Program
                         if (orders[x].itemNum == id)
                         {
                             orders.Remove(orders[x]);
-                            count++;
-
-                            if (count > qnt)
+                            count += 1;
+                            if (count == qnt)
                             {
                                 break;
                             }
