@@ -23,19 +23,25 @@ class RestoMeth
 {
     public static void IterOrders(List<Food> ord)
     {
-        Console.WriteLine($"{"Product", -15} {"Quantity", -10}");
+        float priceSum = 0;
+        Console.WriteLine($"{"Food ID", -5}{"Product", 10} {"Quantity", 15}");
         foreach (Food foods in ord.Distinct())
         {
                 int qnty = 0;
+                float sum = 0;
                 for (int k = 0; k < ord.Count; k++)
                 {
                     if (foods.itemNum == ord[k].itemNum)
                     {
                         qnty += 1;
+                        sum += ord[k].price;
                     }
                 }
-            Console.WriteLine($"{foods.foodName, -15} {"x"+qnty, -10}");
+                priceSum += sum;
+            Console.WriteLine($"{foods.itemNum, -5} {foods.foodName, 10} {"x"+qnty, 15} {"PHP"+ sum, 10}");
         }
+        Console.WriteLine();
+        Console.WriteLine($"Total: PHP {priceSum}");
     }
 }
 
@@ -66,7 +72,7 @@ class Program
             Console.WriteLine();
 
             Console.Write("Enter Food ID: ");
-            string itemId = Console.ReadLine();
+            string? itemId = Console.ReadLine();
             int sel;
 
             Console.WriteLine();
@@ -87,27 +93,47 @@ class Program
                     Console.WriteLine("Invalid number");
                     Console.WriteLine();
                 }
-            }else if (itemId == "c")
+            }else if (itemId.ToLower() == "v")
             {
-                break;
-                
-            }else if (itemId == "cc")
-            {
-                orders.Clear();
-                RestoMeth.IterOrders(orders);
+               RestoMeth.IterOrders(orders);
+               Console.WriteLine();
+               Console.WriteLine("[y] to proceed \n[add] to add more items \n[rem] to remove items");
+               Console.Write("Proceed to Checkout? ");
+               string res = Console.ReadLine();
+                if (res.ToLower() == "rem")
+                {
+                    RestoMeth.IterOrders(orders);
+                    Console.WriteLine();
+
+                    Console.Write("Select the food ID: ");
+                    int id = int.Parse(Console.ReadLine());
+
+                    Console.Write("Enter Quantity: ");
+                    int qnt = int.Parse(Console.ReadLine());
+
+                    int count = 0;
+
+                    for (int x = 0; x < orders.Count; x++)
+                    {
+                        if (orders[x].itemNum == id)
+                        {
+                            orders.Remove(orders[x]);
+                            count++;
+
+                            if (count > qnt)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
             }
             else if (!int.TryParse(itemId, out sel))
             {
                 Console.WriteLine("Invalid Selection");
             }
-            // if (orders.Count != 0)
-            // {
-            //     Console.WriteLine("[confirm] [cancel]");
-            // }
             
         }while(running);
-
-        RestoMeth.IterOrders(orders);
     }
 
     static void Main(string[] args)
@@ -132,5 +158,3 @@ class Program
         } while (isRunning);
     }
 }
-
-
