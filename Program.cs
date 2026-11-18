@@ -72,8 +72,6 @@ class Program
 
             Console.Write("Enter Food ID: ");
             string? itemId = Console.ReadLine();
-
-            Console.Write("Quantity: ");
             int sel;
 
             Console.WriteLine();
@@ -82,12 +80,30 @@ class Program
             {
                 if (sel > 0 || sel <= foodMenu.Length)
                 {
-                    orders.Add(foodMenu[sel - 1]);
-                    // RestoMeth.IterOrders(orders);
-                    // foreach (Food t in orders)
-                    // {
-                    //     Console.WriteLine($"{t.foodName}");
-                    // }
+                    Console.Write("Quantity: ");
+                    int quantity = int.Parse(Console.ReadLine());
+
+                    if (quantity < 100)
+                    {
+                        if ((orders.Count + quantity) < 100)
+                        {
+                            int q = 0;
+
+                            while (q < quantity)
+                            {
+                                orders.Add(foodMenu[sel - 1]);
+                                q++;
+                            }
+                            Console.WriteLine(orders.Count);
+                        }else
+                        {
+                            Console.WriteLine("Quantity exceeds maximum");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Quantity exceeds maximum");
+                    }
                 }
                 else
                 {
