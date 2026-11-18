@@ -114,7 +114,7 @@ class Program
             {
                RestoMeth.IterOrders(orders);
                Console.WriteLine();
-               Console.WriteLine("[y] to proceed \n[add] to add more items \n[rem] to remove items");
+               Console.WriteLine("[y] to proceed \n[add] to add more items \n[rem] to remove items \n[cancel] Cancel Order");
                Console.Write("Proceed to Checkout? ");
                string res = Console.ReadLine();
                 if (res.ToLower() == "rem")
@@ -147,8 +147,11 @@ class Program
                     else
                     {
                         Console.WriteLine("Invalid Number");
-                    }
-                   
+                    }  
+                }else if (res == "cancel")
+                {
+                    orders.Clear();
+                    break;
                 }
             }
             else if (!int.TryParse(itemId, out sel))
