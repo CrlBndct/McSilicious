@@ -72,6 +72,8 @@ class Program
 
             Console.Write("Enter Food ID: ");
             string? itemId = Console.ReadLine();
+
+            Console.Write("Quantity: ");
             int sel;
 
             Console.WriteLine();
@@ -109,25 +111,28 @@ class Program
 
                     Console.Write("Enter Quantity: ");
                     int qnt = int.Parse(Console.ReadLine());
-
-                    int count = 0;
-
-                    for (int x = 0; x < orders.Count;)
+                    if (!(qnt <= 0))
                     {
-                        if (orders[x].itemNum == id)
+                        int count = 0;
+
+                        for (int x = orders.Count - 1; x >= 0 ; x-- )
                         {
-                            orders.Remove(orders[x]);
-                            count += 1;
-                            if (count == qnt)
+                            if (orders[x].itemNum == id)
                             {
-                                break;
+                                orders.Remove(orders[x]);
+                                count += 1;
+                                if (count == qnt)
+                                {
+                                    break;
+                                }
                             }
                         }
-                        else
-                        {
-                            x++;
-                        }
                     }
+                    else
+                    {
+                        Console.WriteLine("Invalid Number");
+                    }
+                   
                 }
             }
             else if (!int.TryParse(itemId, out sel))

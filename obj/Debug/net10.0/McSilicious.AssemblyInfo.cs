@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("McSilicious")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e6478eed46a6d71940bd52955d6fdf7e5a64b1d6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70760d05835582fb1bbdda9ed90c3114ce3be258")]
 [assembly: System.Reflection.AssemblyProductAttribute("McSilicious")]
 [assembly: System.Reflection.AssemblyTitleAttribute("McSilicious")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
