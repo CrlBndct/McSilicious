@@ -1,0 +1,44 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        while (true)
+        {
+            Console.WriteLine("Role Picker");
+            Console.WriteLine("1. Customer");
+            Console.WriteLine("2. Cashier");
+            Console.WriteLine("3. Manager");
+            Console.WriteLine("4. Exit");
+            Console.WriteLine("Enter Role: ");
+
+            string role = Console.ReadLine();
+
+            if (role == "4")
+            {
+                Console.WriteLine("Thank you, come again.");
+                break;
+            }
+            else if (role == "1")
+            {
+                Console.WriteLine("\nWelcome, dear Customer.");
+                break;
+            }
+            else if (role == "2")
+            {
+                Console.WriteLine("\nWelcome, dear Cashier.");
+                break;
+            }
+            else if (role == "3")
+            {
+                Console.WriteLine("\nWelcome, dear Manager.");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid role");
+            }
+        }
+    }
+}

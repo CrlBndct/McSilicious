@@ -1,0 +1,334 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+class Program
+{
+    const string FilePath = "records/orders.txt";
+
+    static string[] foodNames = { "fries", "Meal 1", "Meal 2", "Happy Meal", "Cheese Burger" };
+    static double[] foodPrices = { 59, 192, 200, 235, 89 };
+
+    static void Main()
+    {
+        bool running = true;
+        while (running)
+        {
+            Console.WriteLine("\n======= McSilicious =======");
+            Console.WriteLine("[1] Cashier");
+            Console.WriteLine("[2] Customer");
+            Console.WriteLine("[3] Done");
+            Console.Write("Enter Role: ");
+            string role = Console.ReadLine().Trim();
+
+            if (role == "1") CashierView();
+            else if (role == "2") CustomerView();
+            else if (role == "3") running = false;
+            else Console.WriteLine("Invalid choice. Enter 1, 2, or 3.");
+        }
+        Console.WriteLine("Goodbye!");
+    }
+    static void DisplayMenu()
+    {
+        Console.WriteLine("\n======= Customer =======");
+        Console.WriteLine("ID   Food Name       Price");
+        for (int i = 0; i < foodNames.Length; i++)
+            Console.WriteLine("[" + (i + 1) + "]  " + foodNames[i].PadRight(14) + "PHP " + foodPrices[i]);
+        Console.WriteLine("[v] view order");
+    }
+
+    static double CalculateTotal(int[] quantities)
+    {
+        double total = 0;
+        for (int i = 0; i < quantities.Length; i++)
+            total += quantities[i] * foodPrices[i];
+        return total;
+    }
+
+    static int ReadQuantity()
+    {
+        while (true)
+        {
+            Console.Write("\nQuantity: ");
+            if (int.TryParse(Console.ReadLine().Trim(), out int qty) && qty >= 1 && qty <= 99)
+                return qty;
+            Console.WriteLine("Invalid. Enter a quantity from 1 to 99.");
+        }
+    }
+
+    static void ShowOrder(int[] quantities)
+    {
+        Console.WriteLine("\nFood ID    Product          Quantity   Total");
+        for (int i = 0; i < quantities.Length; i++)
+        {
+            if (quantities[i] > 0)
+                Console.WriteLine((i + 1) + "          " + foodNames[i].PadRight(16) + "x" + quantities[i] + "         PHP" + (quantities[i] * foodPrices[i]));
+        }
+        Console.WriteLine("\nTotal: PHP " + CalculateTotal(quantities));
+    }
+
+    static void RemoveItem(int[] quantities)
+    {
+        Console.Write("Enter Food ID to remove: ");
+        if (int.TryParse(Console.ReadLine().Trim(), out int id) && id >= 1 && id <= quantities.Length)
+        {
+            if (quantities[id - 1] == 0)
+            {
+                Console.WriteLine("That item is not in your order.");
+            }
+            else
+            {
+                quantities[id - 1] = 0;
+                Console.WriteLine(foodNames[id - 1] + " removed.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid Food ID.");
+        }
+    }
+    static void CustomerView()
+    {
+        int[] quantities = new int[foodNames.Length];
+        bool ordering = true;
+
+        while (ordering)
+        {
+            DisplayMenu();
+            Console.Write("\nEnter Food ID: ");
+            string input = Console.ReadLine().Trim().ToLower();
+
+            if (input == "v")
+            {
+                bool reviewing = true;
+                while (reviewing)
+                {
+                    if (CalculateTotal(quantities) == 0)
+                    {
+                        Console.WriteLine("Your order is empty.");
+                        reviewing = false;
+                    }
+                    else
+                    {
+                        ShowOrder(quantities);
+                        Console.WriteLine("\n[y] to proceed");
+                        Console.WriteLine("[add] to add more items");
+                        Console.WriteLine("[rem] to remove items");
+                        Console.WriteLine("[cancel] Cancel Order");
+                        Console.Write("Proceed to Checkout? ");
+                        string choice = Console.ReadLine().Trim().ToLower();
+
+                        if (choice == "y")
+                        {
+                            Checkout(quantities);
+                            reviewing = false;
+                            ordering = false;
+                        }
+                        else if (choice == "add")
+                        {
+                            reviewing = false;
+                        }
+                        else if (choice == "rem")
+                        {
+                            RemoveItem(quantities);
+                        }
+                        else if (choice == "cancel")
+                        {
+                            Console.WriteLine("Order cancelled.");
+                            reviewing = false;
+                            ordering = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid choice.");
+                        }
+                    }
+                }
+            }
+            else if (int.TryParse(input, out int foodId) && foodId >= 1 && foodId <= foodNames.Length)
+            {
+                quantities[foodId - 1] += ReadQuantity();
+            }
+            else
+            {
+                Console.WriteLine("Invalid Food ID.");
+            }
+        }
+    }
+    static void Checkout(int[] quantities)
+    {
+        double total = CalculateTotal(quantities);
+        double cash;
+
+        while (true)
+        {
+            Console.Write("\nEnter cash (0 to cancel): ");
+            if (!double.TryParse(Console.ReadLine().Trim(), out cash) || cash < 0)
+            {
+                Console.WriteLine("Invalid amount.");
+                continue;
+            }
+            if (cash == 0)
+            {
+                Console.WriteLine("Order cancelled.");
+                return;
+            }
+            if (cash < total)
+            {
+                Console.WriteLine("Not enough cash. Try again.");
+                continue;
+            }
+            break;
+        }
+
+        double change = cash - total;
+        string orderId = GetNextId();
+
+        if (SaveOrder(orderId, quantities, total, cash, change))
+        {
+            Console.WriteLine("\n--- RECEIPT ---");
+            Console.WriteLine("Order ID: " + orderId);
+            ShowOrder(quantities);
+            Console.WriteLine("Cash: PHP " + cash);
+            Console.WriteLine("Change: PHP " + change);
+        }
+        else
+        {
+            Console.WriteLine("Sale not completed because saving failed. Please try again.");
+        }
+    }
+
+    static string GetNextId()
+    {
+        int highest = 0;
+        if (File.Exists(FilePath))
+        {
+            foreach (string line in File.ReadAllLines(FilePath))
+            {
+                string[] parts = line.Split('|');
+                if (parts[0].Length > 3 && int.TryParse(parts[0].Substring(3), out int number))
+                {
+                    if (number > highest) highest = number;
+                }
+            }
+        }
+        return "ORD" + (highest + 1).ToString("D3");
+    }
+
+    static bool SaveOrder(string id, int[] quantities, double total, double cash, double change)
+    {
+        try
+        {
+            Directory.CreateDirectory("records"); 
+            List<string> lines = new List<string>();
+
+            for (int i = 0; i < quantities.Length; i++)
+            {
+                if (quantities[i] > 0)
+                {
+                    double subtotal = quantities[i] * foodPrices[i];
+                    lines.Add(id + "|PAID|" + foodNames[i] + "|" + foodPrices[i].ToString("F2") + "|" +
+                              quantities[i] + "|" + subtotal.ToString("F2") + "|" +
+                              total.ToString("F2") + "|" + cash.ToString("F2") + "|" + change.ToString("F2"));
+                }
+            }
+
+            File.AppendAllLines(FilePath, lines); 
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Save error: " + ex.Message);
+            return false;
+        }
+    }
+
+    static void CashierView()
+    {
+        bool inCashier = true;
+        while (inCashier)
+        {
+            Console.WriteLine("\n======= Cashier =======");
+            Console.WriteLine("[1] Find Order");
+            Console.WriteLine("[2] Sales Report");
+            Console.WriteLine("[3] Back");
+            Console.Write("Enter Choice: ");
+            string choice = Console.ReadLine().Trim();
+
+            if (choice == "1") FindOrder();
+            else if (choice == "2") ShowSales();
+            else if (choice == "3") inCashier = false;
+            else Console.WriteLine("Invalid choice. Enter 1, 2, or 3.");
+        }
+    }
+
+    static void FindOrder()
+    {
+        string searchId = "";
+        while (searchId == "")
+        {
+            Console.Write("Enter Order ID: ");
+            searchId = Console.ReadLine().Trim().ToUpper();
+            if (searchId == "") Console.WriteLine("Order ID cannot be blank. Please enter an ID.");
+        }
+
+        if (!File.Exists(FilePath))
+        {
+            Console.WriteLine("Order not found.");
+            return;
+        }
+
+        bool found = false;
+        string[] last = null;
+
+        foreach (string line in File.ReadAllLines(FilePath))
+        {
+            string[] p = line.Split('|');
+            if (p.Length == 9 && p[0] == searchId && p[1] == "PAID")
+            {
+                if (!found) Console.WriteLine("\n--- RECEIPT " + p[0] + " (" + p[1] + ") ---");
+                found = true;
+                Console.WriteLine(p[2] + "   PHP " + p[3] + " x " + p[4] + " = PHP " + p[5]);
+                last = p;
+            }
+        }
+
+        if (!found)
+        {
+            Console.WriteLine("Order not found.");
+            return;
+        }
+
+        Console.WriteLine("Total: PHP " + last[6]);
+        Console.WriteLine("Cash: PHP " + last[7]);
+        Console.WriteLine("Change: PHP " + last[8]);
+    }
+
+    static void ShowSales()
+    {
+        int orderCount = 0;
+        double totalSales = 0;
+        List<string> counted = new List<string>();
+
+        if (File.Exists(FilePath))
+        {
+            foreach (string line in File.ReadAllLines(FilePath))
+            {
+                string[] p = line.Split('|');
+                if (p.Length != 9 || p[1] != "PAID" || counted.Contains(p[0])) continue;
+
+                if (double.TryParse(p[6], out double orderTotal))
+                {
+                    counted.Add(p[0]);
+                    orderCount++;
+                    totalSales += orderTotal;
+                }
+            }
+        }
+
+        Console.WriteLine("\n--- SALES REPORT ---");
+        Console.WriteLine("Orders: " + orderCount);
+        Console.WriteLine("Total sales: PHP " + totalSales.ToString("F2"));
+        if (orderCount == 0) Console.WriteLine("No sales yet");
+    }
+}
