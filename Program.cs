@@ -23,7 +23,7 @@ class Program
             switch (r)
             {
                 case 2:
-                    Role.Customer();
+                    Customer.Meth();
                     break;
             }
 

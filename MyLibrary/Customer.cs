@@ -1,9 +1,9 @@
 ﻿namespace MyLibrary;
 
-public class Role
+public class Customer
 {
     static List<Food> orders = new List<Food>();
-    public static void Customer()
+    public static void Meth()
     {
         Food[] foodMenu = {new Food(1, "fries", 59.00f), 
                            new Food(2, "Meal 1", 192.00f), 
@@ -35,11 +35,11 @@ public class Role
                 if (sel > 0 || sel <= foodMenu.Length)
                 {
                     Console.Write("Quantity: ");
-                    int quantity = int.Parse(Console.ReadLine());
-
-                    if (quantity < 100)
+                    string quantityStr = Console.ReadLine();
+                    int quantity;
+                    if (int.TryParse(quantityStr, out quantity))
                     {
-                        if ((orders.Count + quantity) < 100)
+                        if (quantity < 100 && (orders.Count + quantity) < 100)
                         {
                             int q = 0;
 
@@ -49,18 +49,15 @@ public class Role
                                 q++;
                             }
                             Console.WriteLine(orders.Count);
-                        }else
+                        }
+                        else if(quantity >= 100)
                         {
                             Console.WriteLine("Quantity exceeds maximum");
                         }
-                    }
-                    else if(quantity >= 100)
-                    {
-                        Console.WriteLine("Quantity exceeds maximum");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid");
+                        else
+                        {
+                            Console.WriteLine("Invalid");
+                        }
                     }
                 }
                 else
@@ -113,7 +110,7 @@ public class Role
                     break;
                 }else if (res.ToLower() == "add")
                 {
-                    Customer();
+                    Meth();
                 }else if (res.ToLower() == "y")
                 {
                     break;
