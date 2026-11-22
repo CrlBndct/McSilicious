@@ -1,33 +1,48 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Collections.Generic;
-using System.Linq;
+﻿
 using MyLibrary;
-using System.IO;
-
 
 class Program
 {
     static void Main(string[] args)
     {
         bool isRunning = true;
-        Console.WriteLine("======= McSilicious =======");
-        do
+
+        while (isRunning)
         {
-            Console.WriteLine("[1] Cashier \n[2] Customer \n[3] Done");
+            Console.Clear();
+            Console.WriteLine("==============================");
+            Console.WriteLine("        McSilicious");
+            Console.WriteLine("==============================");
+            Console.WriteLine("[1] Customer View");
+            Console.WriteLine("[2] Cashier View");
+            Console.WriteLine("[3] Exit");
+            Console.WriteLine("==============================");
 
             Console.Write("Enter Role: ");
-            int r = int.Parse(Console.ReadLine());
-            Console.WriteLine();
+            string? input = Console.ReadLine()?.Trim();
 
-            switch (r)
+            switch (input)
             {
-                case 2:
+                case "1":
                     Customer.Meth();
                     break;
-            }
 
-        } while (isRunning);
+                case "2":
+                    Cashier.Meth();
+                    break;
+
+                case "3":
+                    isRunning = false;
+                    Console.WriteLine();
+                    Console.WriteLine("Thank you for using McSilicious!");
+                    break;
+
+                default:
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid selection.");
+                    RestoMeth.Pause();
+                    break;
+            }
+        }
     }
 }
