@@ -60,8 +60,8 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "c:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj": {
-              "projectPath": "c:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj"
+            "C:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj": {
+              "projectPath": "C:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj"
             }
           }
         }

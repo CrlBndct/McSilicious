@@ -34,8 +34,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "c:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj": {
-                "projectPath": "c:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj"
+              "C:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj": {
+                "projectPath": "C:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj"
               }
             }
           }
@@ -350,14 +350,14 @@
         }
       }
     },
-    "c:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj": {
+    "C:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj",
         "projectName": "MyLibrary",
-        "projectPath": "c:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj",
+        "projectPath": "C:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\MyLibrary.csproj",
         "packagesPath": "C:\\Users\\Benedict Dagle\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\obj\\",
+        "outputPath": "C:\\Users\\Benedict Dagle\\OneDrive\\Documents\\COMPROG\\CSHARP\\CollegeProjects\\McSilicious\\MyLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

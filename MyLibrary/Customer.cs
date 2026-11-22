@@ -107,13 +107,13 @@ public class Customer
                 }else if (res.ToLower() == "cancel")
                 {
                     orders.Clear();
-                    break;
                 }else if (res.ToLower() == "add")
                 {
-                    Meth();
+                    running = true;
                 }else if (res.ToLower() == "y")
                 {
-                    break;
+                    running = false;
+                    RestoMeth.createReceipt(orders);
                 }
                 else
                 {
