@@ -7,12 +7,11 @@ Status: PAID
 
 Food                 Price      Qty   Subtotal    
 --------------------------------------------------------
-Chicken Meal         PHP 120.00 2     PHP 240.00    
-Soft Drink           PHP 30.00  1     PHP 30.00     
+Chicken Meal         PHP 120.00 1     PHP 120.00    
 
-Total: PHP 270.00
-Cash: PHP 300.00
-Change: PHP 30.00
+Total: PHP 120.00
+Cash: PHP 120.00
+Change: PHP 0.00
 ==============================
      Thank you for ordering!
 ==============================
