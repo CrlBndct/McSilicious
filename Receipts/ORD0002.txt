@@ -1,0 +1,18 @@
+==============================
+        McSilicious
+          RECEIPT
+==============================
+Order ID: ORD0002
+Status: PAID
+
+Food                 Price      Qty   Subtotal    
+--------------------------------------------------------
+Fries                PHP 45.00  1     PHP 45.00     
+Soft Drink           PHP 30.00  1     PHP 30.00     
+
+Total: PHP 75.00
+Cash: PHP 75.00
+Change: PHP 0.00
+==============================
+     Thank you for ordering!
+==============================
