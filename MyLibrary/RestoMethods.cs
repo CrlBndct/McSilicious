@@ -11,6 +11,8 @@ using System.Text;
 public class RestoMeth
 {
     private static readonly string RecordFolder = "records";
+    // private static readonly string RecordFolder = @"C:\Windows\System32\McSiliciousTestRecords";
+
     private static readonly string RecordFile = Path.Combine(RecordFolder, "orders.txt");
 
     private static readonly string ReceiptFolder =
@@ -168,7 +170,7 @@ public class RestoMeth
     {
         try
         {
-            Directory.CreateDirectory(RecordFolder);
+            // Directory.CreateDirectory(RecordFolder);
 
             List<string> lines = new List<string>();
 
